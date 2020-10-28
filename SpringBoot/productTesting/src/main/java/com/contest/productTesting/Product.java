@@ -11,12 +11,14 @@ public class Product {
     private int pid;
     private String name;
     private String price;
+    private String imgUrl;
 
-    public Product(String id, int pid, String name, String price) {
+    public Product(String id, int pid, String name, String price, String imgUrl) {
         this.id = id;
         this.pid = pid;
         this.name = name;
         this.price = price;
+        this.imgUrl = imgUrl;
     }
 
     public String getId() {
@@ -51,6 +53,14 @@ public class Product {
         this.price = price;
     }
 
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -58,6 +68,7 @@ public class Product {
                 ", pid=" + pid +
                 ", name='" + name + '\'' +
                 ", price='" + price + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
                 '}';
     }
 }

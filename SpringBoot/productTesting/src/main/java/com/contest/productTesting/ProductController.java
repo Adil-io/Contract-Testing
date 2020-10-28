@@ -29,7 +29,7 @@ public class ProductController {
                 return product;
             }
         }
-        return new Product("",-1,"null","null");
+        return new Product("",-1,"null","null","");
     }
 
     @PostMapping("/create-product")
