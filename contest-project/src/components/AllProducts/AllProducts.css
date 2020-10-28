@@ -1,23 +1,7 @@
 .product-item {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   cursor: pointer;
-  padding: 2px;
-  min-height: 5vh;
-  margin: 10px;
-  background-color: #e84545 !important;
-  transition: transform 0.2s !important;
-}
-
-.product-item:hover {
-  background-color: #903749 !important;
-  transform: scale(1.1);
-  color: #eeeeee !important;
-}
-
-.product-item active {
-  background-color: #eeeeee;
+  height: 5vh;
+  transition: transform 0.3s;
 }
 
 /* LOADER */

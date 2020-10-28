@@ -1,17 +1,54 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './AllProducts.css'
-import Paper from '@material-ui/core/Paper';
+
+import { Paper, List, ListItem, ListItemText, withStyles, Divider } from "@material-ui/core";
+
+const StyledListItem = withStyles({
+  root: {
+    margin: "15px",
+    "&.Mui-selected": {
+      backgroundColor: "#e84545",
+      color: "white",
+      width: "23vw",
+      paddingLeft: "50px",
+      transform: "translateX(25px) scale(1.3)"
+    },
+    "&:hover": {
+      backgroundColor: "#ED7373",
+      color: "#2b2e4a",
+      width: "23vw",
+      paddingLeft: "50px",
+      transform: "translateX(25px) scale(1.3)"
+    }
+  },
+})(ListItem);
 
 const AllProducts = ({products, showProduct})=> {
-  //console.log(products)
+  
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+
+  const handleListItemClick = (event, index, pid) => {
+    setSelectedIndex(index);
+    showProduct(pid);
+  };
+
   let productList = products.length ? 
-    products.map(product => {
-      let {id, pid, name} = product;
+    products.map((product, index) => {
+      let {pid, name} = product;
 
       return (
-        <Paper key={id} className="product-item" onClick={()=> showProduct(pid)} >
-          {name}
-        </Paper>
+        <>
+          <StyledListItem
+            key={index}
+            button
+            selected={selectedIndex === index}
+            onClick={(event) => handleListItemClick(event, index, pid)}
+            className="product-item"
+          >
+            <ListItemText primary={name} />
+          </StyledListItem>
+          <Divider />
+        </>
       )
     }) :
     <div className="loader-div">
@@ -21,7 +58,9 @@ const AllProducts = ({products, showProduct})=> {
   
   return (
     <Paper className="product-list">
-      {productList}
+      <List component="nav" aria-label="main mailbox folders">
+        {productList}
+      </List>
     </Paper>
   );
 }
