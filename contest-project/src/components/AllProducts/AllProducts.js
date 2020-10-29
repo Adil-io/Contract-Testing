@@ -6,6 +6,7 @@ import { Paper, List, ListItem, ListItemText, withStyles, Divider } from "@mater
 const StyledListItem = withStyles({
   root: {
     margin: "15px",
+    transition: "all 0.25s",
     "&.Mui-selected": {
       backgroundColor: "#e84545",
       color: "white",
@@ -14,8 +15,8 @@ const StyledListItem = withStyles({
       transform: "translateX(25px) scale(1.3)"
     },
     "&:hover": {
-      backgroundColor: "#ED7373",
-      color: "#2b2e4a",
+      backgroundColor: "#fbf9fa",
+      color: "#e84545",
       width: "23vw",
       paddingLeft: "50px",
       transform: "translateX(25px) scale(1.3)"
