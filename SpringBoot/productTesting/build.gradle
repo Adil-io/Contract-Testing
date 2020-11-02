@@ -1,7 +1,8 @@
 plugins {
+	id 'java'
 	id 'org.springframework.boot' version '2.3.4.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-	id 'java'
+	id "au.com.dius.pact" version "4.1.7"
 }
 
 group = 'com.contest'
@@ -13,14 +14,38 @@ repositories {
 }
 
 dependencies {
+	//Json to extract and read data.
+	compile group: 'org.json', name: 'json', version: '20200518'
+
+	//Minimal Set Of Dependencies Required
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	testImplementation("junit:junit")
+	testImplementation("au.com.dius:pact-jvm-consumer-junit:4.0.3")
 }
 
 test {
 	useJUnitPlatform()
+}
+
+pact {
+	serviceProviders {
+		'ProductProvider' {
+			port = 8080
+
+			hasPactWith('ProductConsumer') {
+				pactSource = file("build/pacts/ProductConsumer-ProductProvider.json")
+			}
+		}
+		'AllProductsProvider' {
+			port = 8080
+
+			hasPactWith('AllProductsConsumer') {
+				pactSource = file("build/pacts/AllProductsConsumer-AllProductsProvider.json")
+			}
+		}
+	}
 }
