@@ -1,0 +1,30 @@
+.root {
+  flex-grow: 1;
+  margin: 2vh 10vw;
+}
+
+.heading {
+  text-align: center;
+  background-color: #2b2e4a !important;
+  color: #eeeeee !important;
+  padding: 25px;
+  font-size: 30px;
+}
+
+.product-list {
+  padding: 2px;
+  text-align: center;
+  height: 85vh;
+  overflow-y: auto;
+  background-color: #fbf9fa !important;
+}
+
+.selected-product {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2px;
+  text-align: center;
+  min-height: 85vh;
+  background-color: #ffffff !important;
+}
