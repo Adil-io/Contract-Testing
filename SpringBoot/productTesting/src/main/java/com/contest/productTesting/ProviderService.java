@@ -12,6 +12,14 @@ import java.util.Arrays;
 public class ProviderService {
     RestTemplate restTemplate = new RestTemplate();
 
+    public JSONArray getProductJSONArray(String url) {
+        System.out.println("-----------------RESPONSE BODY START-----------------");
+        JSONArray resJson = new JSONArray(restTemplate.getForObject(url, String.class));
+        System.out.println("Response Body"  + resJson);
+        System.out.println("-----------------RESPONSE BODY END-----------------");
+        return resJson;
+    }
+
     public JSONObject getProductJSON(String url) {
         System.out.println("-----------------RESPONSE BODY START-----------------");
         JSONObject resJson = new JSONObject(restTemplate.getForObject(url, String.class));
@@ -20,15 +28,5 @@ public class ProviderService {
         return resJson;
     }
 
-    public JSONObject getAllProductsJSON(String url) {
-        System.out.println("-----------------RESPONSE BODY START-----------------");
-        ResponseEntity<Product[]> response = restTemplate.getForEntity(url, Product[].class);
-        Product[] products = response.getBody();
-        System.out.println(products);
-        JSONObject resJson = new JSONObject(products);
-        System.out.println("res JSON " + resJson);
-        System.out.println("-----------------RESPONSE BODY END-----------------");
-        return resJson;
-    }
 
 }
